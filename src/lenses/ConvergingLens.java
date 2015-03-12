@@ -34,9 +34,7 @@ public class ConvergingLens {
      * Calculates where the light rays will be and draws them on the lens view
      * @param gc The GraphicsContext to draws the light refractions on
      */
-    public void drawLight(GraphicsContext gc){
-        gc.setStroke(Color.BLACK);
-          
+    public void drawLight(GraphicsContext gc){          
         drawPRay(gc);
         drawCRay(gc);
         drawFRay(gc);
@@ -47,6 +45,8 @@ public class ConvergingLens {
      * @param gc The GraphicsContext to draws the light refractions on
      */
     private void drawPRay(GraphicsContext gc) {
+        gc.setStroke(Color.BLACK);
+                
         // Draws P ray going up to the lens
         gc.strokeLine(getXl() - disO, getYl() - ho, getXl(), getYl() - ho);
         
@@ -65,6 +65,22 @@ public class ConvergingLens {
         double exactY = getYl() - ho + relativeY;
         
         gc.strokeLine(getXl(), getYl() - ho, exactX, exactY);
+        
+        // Draw reflected ray for virtual image
+        if (f > disO) {
+            gc.setStroke(Color.PURPLE);
+            
+            // Create triangle ofproportional size
+            double xLen = Lenses.CANVAS_WIDTH;
+            double reflectionRadians = Math.toRadians(90 - Math.toDegrees(focalAngle));
+            double yLen = Math.tan(reflectionRadians) * xLen;
+            
+            // Move traingle to correct posistion
+            double xPos = getXl() - xLen;
+            double yPos = getYl() - ho - yLen;
+            
+            gc.strokeLine(getXl(), getYl() - ho, xPos, yPos);
+        }
     }
     
     /**
@@ -72,6 +88,8 @@ public class ConvergingLens {
      * @param gc The GraphicsContext to draws the light refractions on
      */
     private void drawCRay(GraphicsContext gc) {
+        gc.setStroke(Color.BLACK);
+        
         // Calulate the angle the light ray will travel to the center
         double rayAngle = Math.atan(disO / ho);
         System.out.println(rayAngle);
@@ -85,6 +103,23 @@ public class ConvergingLens {
         double exactY = relativeY + getYl() - ho;
         
         gc.strokeLine(getXl() - disO, getYl() - ho, exactX, exactY);
+        
+        // Draw reflected ray for virtual image
+        if (f > disO) {
+            gc.setStroke(Color.PURPLE);
+            
+            // Create imaginary triangle to find x and y values
+            double xRelative = Lenses.CANVAS_WIDTH; // large number to ensure ray is long enough
+            // Find the complementary angle (the angle that the triangle will use) by doing 90 - the ray angle
+            double reflectedAngle = Math.toRadians(90 - Math.toDegrees(rayAngle));
+            double yRelative = Math.tan(reflectedAngle) * xRelative;
+            
+            // Move the points to the correct posistion 
+            double xExact = getXl() - disO - xRelative;
+            double yExact = getYl() - ho - yRelative;
+            
+            gc.strokeLine(getXl() - disO, getYl() - ho, xExact, yExact);
+        }
     }
     
     /**
@@ -92,6 +127,8 @@ public class ConvergingLens {
      * @param gc The GraphicsContext to draws the light refractions on
      */
     private void drawFRay(GraphicsContext gc) {
+        gc.setStroke(Color.BLACK);
+        
         // Calculate the angle to the focal point
         double rayAngle = Math.atan((disO - f) / ho);
         
@@ -105,6 +142,12 @@ public class ConvergingLens {
         // Draw ray after refraction
         gc.strokeLine(getXl(), exactY, Lenses.CANVAS_WIDTH, exactY);
         
+        // Draw reflected ray for virtual image
+        if (f > disO) {
+            gc.setStroke(Color.PURPLE);
+            
+            gc.strokeLine(getXl(), exactY, 0, exactY);
+        }
     }
     
     /**
