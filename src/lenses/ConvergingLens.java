@@ -22,6 +22,8 @@ public class ConvergingLens {
     public void drawLens(GraphicsContext gc) {
         gc.setStroke(Color.BLUE);
         
+        gc.fillText("Converging Lens", Lenses.CANVAS_WIDTH - 150, 15);
+
         for (int x=0; x<=Lenses.CANVAS_WIDTH; x+=50) {
             gc.strokeLine(x, getYl(), x+25, getYl());
         }
@@ -149,6 +151,10 @@ public class ConvergingLens {
         }
     }
     
+    /**
+     * Prints the values of the image to the lens view
+     * @param gc The GraphicsContext to draws the light refractions on
+     */
     public void outputValues (GraphicsContext gc) {
         gc.setFill(Color.BLACK);
         
@@ -162,6 +168,30 @@ public class ConvergingLens {
         gc.fillText("Distance from lens to image: " + disImg, 15, Lenses.CANVAS_HEIGHT + 15);
         gc.fillText("Height of the image " + hImg, 15, Lenses.CANVAS_HEIGHT + 30);
         gc.fillText("Magnification: " + magnification, 15, Lenses.CANVAS_HEIGHT + 45);
+        gc.fillText("Image classification: " + classifyImage(magnification), 15, Lenses.CANVAS_HEIGHT + 60);
+    }
+    
+    /**
+     * @return The classified version of the image
+     */
+    private String classifyImage(double magnification) {
+        String classification = "";
+        if (f > disO) 
+            classification += "Real ";
+        else if (f < disO) 
+            classification += "Virtual ";
+        
+        if (magnification > 0) 
+            classification += "upright ";
+        else if (magnification < 0) 
+            classification += "inverted ";
+        
+        if (Math.abs(magnification) > 1) 
+            classification += "englarged";
+        else if (Math.abs(magnification) < 1) 
+            classification += "reduced";
+        
+        return classification;
     }
     
     /**
