@@ -14,6 +14,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -98,16 +99,18 @@ public class Lenses extends Application {
             showInput(primaryStage, ho, disO, f);
         });
         
-       
+       gc.setStroke(Color.BLACK);
+       gc.strokeLine(0, CANVAS_HEIGHT, CANVAS_WIDTH, CANVAS_HEIGHT);
+        
         // Perform calculations and output to the view
         if (lensType.equals("Converging Lens")) {
             ConvergingLens lens = new ConvergingLens(ho, disO, f);
             lens.drawLens(gc);
             lens.drawLight(gc);
+            lens.outputValues(gc);
         }
         
-        
-
+  
         root.getChildren().add(canvas);  
         root.getChildren().add(change);
         primaryStage.setScene(new Scene(root));   

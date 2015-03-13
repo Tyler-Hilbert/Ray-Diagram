@@ -92,7 +92,6 @@ public class ConvergingLens {
         
         // Calulate the angle the light ray will travel to the center
         double rayAngle = Math.atan(disO / ho);
-        System.out.println(rayAngle);
         
         // Create triangle to find x and y sizes
         double relativeX = Lenses.CANVAS_WIDTH; // A large x value to draw the line to
@@ -148,6 +147,21 @@ public class ConvergingLens {
             
             gc.strokeLine(getXl(), exactY, 0, exactY);
         }
+    }
+    
+    public void outputValues (GraphicsContext gc) {
+        gc.setFill(Color.BLACK);
+        
+        // Calculate the distance between the lens and the image
+        double disImg = 1 / (1/f - 1/disO); 
+        // Calculate height of the image
+        double hImg = -disImg * ho / disO;
+        // Calculate magnification
+        double magnification = -disImg / disO;
+        
+        gc.fillText("Distance from lens to image: " + disImg, 15, Lenses.CANVAS_HEIGHT + 15);
+        gc.fillText("Height of the image " + hImg, 15, Lenses.CANVAS_HEIGHT + 30);
+        gc.fillText("Magnification: " + magnification, 15, Lenses.CANVAS_HEIGHT + 45);
     }
     
     /**
