@@ -103,12 +103,13 @@ public class Lenses extends Application {
        gc.strokeLine(0, CANVAS_HEIGHT, CANVAS_WIDTH, CANVAS_HEIGHT);
         
         // Perform calculations and output to the view
+        Lens lens = null;
         if (lensType.equals("Converging Lens")) {
-            ConvergingLens lens = new ConvergingLens(ho, disO, f);
-            lens.drawLens(gc);
-            lens.drawLight(gc);
-            lens.outputValues(gc);
+            lens = new ConvergingLens(ho, disO, f);
         }
+        lens.drawLens(gc);
+        lens.drawLight(gc);
+        lens.outputValues(gc);
         
   
         root.getChildren().add(canvas);  
