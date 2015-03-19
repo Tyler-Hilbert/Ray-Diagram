@@ -29,12 +29,12 @@ public class Lenses extends Application {
         double disO = 300; // Distance of object
         double f = 50; // Focal length
         
-        showInput(primaryStage, ho, disO, f);
+        showInput(primaryStage, ho, disO, f, true);
         
         primaryStage.setTitle("Lenses");
     }
     
-    private void showInput(Stage primaryStage, double ho, double disO, double f) {
+    private void showInput(Stage primaryStage, double ho, double disO, double f, boolean convergingLens) {
         // Set up grid
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -60,7 +60,12 @@ public class Lenses extends Application {
         ChoiceBox lensChoice = new ChoiceBox(FXCollections.observableArrayList(
             "Converging Lens", "Diverging Lens")
         );
-        lensChoice.getSelectionModel().selectFirst();
+       
+        if (convergingLens) {
+            lensChoice.getSelectionModel().selectFirst();
+        } else {
+            lensChoice.getSelectionModel().select(1);
+        }
 
         
         Button submit = new Button("update");
@@ -69,8 +74,8 @@ public class Lenses extends Application {
                 final double inputHo = Double.parseDouble(hoText.getText());
                 final double inputDisO = Double.parseDouble(disOText.getText());
                 final double inputFocal = Double.parseDouble(focalText.getText());
-                String lensType = (String)lensChoice.getValue();
-                showLensView(primaryStage, inputHo, inputDisO, inputFocal, lensType);
+                final boolean inputConvergingLens = (String)lensChoice.getValue() == "Converging Lens";
+                showLensView(primaryStage, inputHo, inputDisO, inputFocal, inputConvergingLens);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -87,7 +92,7 @@ public class Lenses extends Application {
         grid.add(submit, 0, 4);
     }
     
-    private void showLensView(Stage primaryStage, double ho, double disO, double f, String lensType) {
+    private void showLensView(Stage primaryStage, double ho, double disO, double f, boolean convergingLens) {
         // Set up view for the light
         GraphicsContext gc;
         Group root = new Group();    
@@ -96,7 +101,7 @@ public class Lenses extends Application {
         
         Button change = new Button("Change properties");
         change.setOnAction((ActionEvent e) -> {
-            showInput(primaryStage, ho, disO, f);
+            showInput(primaryStage, ho, disO, f, convergingLens);
         });
         
        gc.setStroke(Color.BLACK);
@@ -104,8 +109,12 @@ public class Lenses extends Application {
         
         // Perform calculations and output to the view
         Lens lens = null;
-        if (lensType.equals("Converging Lens")) {
+        if (convergingLens) {
             lens = new ConvergingLens(ho, disO, f);
+            gc.fillText("Converging Lens", Lenses.CANVAS_WIDTH - 150, 15);
+        } else {
+            lens = new DivergingLens(ho, disO, f);
+            gc.fillText("Diverging Lens", Lenses.CANVAS_WIDTH - 150, 15);
         }
         lens.drawLens(gc);
         lens.drawLight(gc);
