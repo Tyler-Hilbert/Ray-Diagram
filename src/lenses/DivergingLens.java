@@ -70,4 +70,23 @@ public class DivergingLens extends Lens{
         gc.strokeLine(getXl(), ye, 0, ye);
     }
     
+    /**
+     * Prints the values of the image to the lens view
+     * @param gc The GraphicsContext to draws the light refractions on
+     */
+    public void outputValues (GraphicsContext gc) {
+        gc.setFill(Color.BLACK);
+        
+        // Calculate the distance between the lens and the image
+        double disImg = 1 / (1/f - 1/disO); 
+        // Calculate height of the image
+        double hImg = disImg * ho / disO;
+        // Calculate magnification
+        double magnification = disImg / disO;
+        
+        gc.fillText("Distance from lens to image: " + disImg, 15, Lenses.CANVAS_HEIGHT + 15);
+        gc.fillText("Height of the image " + hImg, 15, Lenses.CANVAS_HEIGHT + 30);
+        gc.fillText("Magnification: " + magnification, 15, Lenses.CANVAS_HEIGHT + 45);
+        gc.fillText("Image classification: Virtual upright reduced", 15, Lenses.CANVAS_HEIGHT + 60);
+    }
 }

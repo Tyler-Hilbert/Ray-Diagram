@@ -82,50 +82,11 @@ public abstract class Lens {
         }
     }
     
-    
     /**
      * Prints the values of the image to the lens view
      * @param gc The GraphicsContext to draws the light refractions on
      */
-    public final void outputValues (GraphicsContext gc) {
-        gc.setFill(Color.BLACK);
-        
-        // Calculate the distance between the lens and the image
-        double disImg = 1 / (1/f - 1/disO); 
-        // Calculate height of the image
-        double hImg = -disImg * ho / disO;
-        // Calculate magnification
-        double magnification = -disImg / disO;
-        
-        gc.fillText("Distance from lens to image: " + disImg, 15, Lenses.CANVAS_HEIGHT + 15);
-        gc.fillText("Height of the image " + hImg, 15, Lenses.CANVAS_HEIGHT + 30);
-        gc.fillText("Magnification: " + magnification, 15, Lenses.CANVAS_HEIGHT + 45);
-        gc.fillText("Image classification: " + classifyImage(magnification), 15, Lenses.CANVAS_HEIGHT + 60);
-    }
-    
-        
-    /**
-     * @return The classified version of the image
-     */
-    private final String classifyImage(double magnification) {
-        String classification = "";
-        if (f > disO) 
-            classification += "Real ";
-        else if (f < disO) 
-            classification += "Virtual ";
-        
-        if (magnification > 0) 
-            classification += "upright ";
-        else if (magnification < 0) 
-            classification += "inverted ";
-        
-        if (Math.abs(magnification) > 1) 
-            classification += "englarged";
-        else if (Math.abs(magnification) < 1) 
-            classification += "reduced";
-        
-        return classification;
-    }
+    public abstract void outputValues (GraphicsContext gc);
     
     /**
      * @return The center x position of the lense
