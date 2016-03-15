@@ -11,5 +11,5 @@ Shows calculation (Converging Lens)
 Another calculation (Diverging Lens)
 ![Shows calculation (Diverging Lens)](https://raw.githubusercontent.com/Tyler-Hilbert/RefractionThroughLenses/master/doc/Screenshot3.jpg "Shows calculation (Diverging Lens)")
 
-#Learn more about Ray Diagrams:
+#Learn more about ray diagrams:
 [Physics Classroom -- The Anatomy of a Lens](http://www.physicsclassroom.com/class/refrn/Lesson-5/The-Anatomy-of-a-Lens)
