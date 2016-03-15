@@ -1,5 +1,5 @@
 # Ray Diagram
-Calculates and draws a Ray Diagram for converging and diverging lenses.
+Calculates and draws a ray diagram for converging and diverging lenses.
 
 
 Enter variables
