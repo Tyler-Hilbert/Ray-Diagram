@@ -2,8 +2,8 @@
 A Java app that calculates and draws a ray diagram for converging and diverging lenses.
 
 # Installation
-1)Clone the reposotory: $git clone https://github.com/Tyler-Hilbert/Ray-Diagram.git
-2) Open the project in NetBeans IDE
+1. Clone the reposotory: $git clone https://github.com/Tyler-Hilbert/Ray-Diagram.git
+2. Open the project in NetBeans IDE
 
 # Screenshots
 Enter variables
