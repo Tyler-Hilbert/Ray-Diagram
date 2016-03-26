@@ -1,7 +1,11 @@
 # Ray Diagram
-Calculates and draws a ray diagram for converging and diverging lenses.
+A Java app that calculates and draws a ray diagram for converging and diverging lenses.
 
+# Installation
+1)Clone the reposotory: $git clone https://github.com/Tyler-Hilbert/Ray-Diagram.git
+2) Open the project in NetBeans IDE
 
+# Screenshots
 Enter variables
 ![Enter variables](https://raw.githubusercontent.com/Tyler-Hilbert/RefractionThroughLenses/master/doc/Screenshot1.jpg "Enter variables")
 
@@ -11,5 +15,5 @@ Shows calculation (Converging Lens)
 Another calculation (Diverging Lens)
 ![Shows calculation (Diverging Lens)](https://raw.githubusercontent.com/Tyler-Hilbert/RefractionThroughLenses/master/doc/Screenshot3.jpg "Shows calculation (Diverging Lens)")
 
-#Learn more about ray diagrams:
+# Learn more about ray diagrams:
 [Physics Classroom -- The Anatomy of a Lens](http://www.physicsclassroom.com/class/refrn/Lesson-5/The-Anatomy-of-a-Lens)
