@@ -1,6 +1,3 @@
-
-package lenses;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -19,7 +16,7 @@ public class DivergingLens extends Lens{
         double radians = Math.atan(ho/f);
         
         // Draw reflected ray
-        double yr = Lenses.CANVAS_HEIGHT; // Large number to ensure large ray drawn
+        double yr = Main.CANVAS_HEIGHT; // Large number to ensure large ray drawn
         double xr = yr / Math.tan(radians);
         
         double xe = getXl() - xr;
@@ -63,7 +60,7 @@ public class DivergingLens extends Lens{
         gc.strokeLine(getXl() - disO, getYl() - ho, xe, ye);
         
         // Draw Refracted ray
-        gc.strokeLine(getXl(), ye, Lenses.CANVAS_WIDTH, ye);
+        gc.strokeLine(getXl(), ye, Main.CANVAS_WIDTH, ye);
         
         // Draw reflected ray
         gc.setStroke(Color.RED);
@@ -84,9 +81,9 @@ public class DivergingLens extends Lens{
         // Calculate magnification
         double magnification = disImg / disO;
         
-        gc.fillText("Distance from lens to image: " + disImg, 15, Lenses.CANVAS_HEIGHT + 15);
-        gc.fillText("Height of the image " + hImg, 15, Lenses.CANVAS_HEIGHT + 30);
-        gc.fillText("Magnification: " + magnification, 15, Lenses.CANVAS_HEIGHT + 45);
-        gc.fillText("Image classification: Virtual upright reduced", 15, Lenses.CANVAS_HEIGHT + 60);
+        gc.fillText("Distance from lens to image: " + disImg, 15, Main.CANVAS_HEIGHT + 15);
+        gc.fillText("Height of the image " + hImg, 15, Main.CANVAS_HEIGHT + 30);
+        gc.fillText("Magnification: " + magnification, 15, Main.CANVAS_HEIGHT + 45);
+        gc.fillText("Image classification: Virtual upright reduced", 15, Main.CANVAS_HEIGHT + 60);
     }
 }

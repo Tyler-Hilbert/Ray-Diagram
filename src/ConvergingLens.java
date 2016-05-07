@@ -1,5 +1,3 @@
-package lenses;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -25,7 +23,7 @@ public class ConvergingLens extends Lens {
         double focalAngle = Math.atan(f/ho); 
         
         // Extend the triangle so the line goes past the focal point
-        double scale = Lenses.CANVAS_HEIGHT*2; // A large number that makes sure the line goes far enough
+        double scale = Main.CANVAS_HEIGHT*2; // A large number that makes sure the line goes far enough
         double relativeX = Math.sin(focalAngle) * scale;
                 
         double relativeY = Math.cos(focalAngle) * scale;
@@ -41,7 +39,7 @@ public class ConvergingLens extends Lens {
             gc.setStroke(Color.RED);
             
             // Create triangle ofproportional size
-            double xLen = Lenses.CANVAS_WIDTH;
+            double xLen = Main.CANVAS_WIDTH;
             double reflectionRadians = Math.toRadians(90 - Math.toDegrees(focalAngle));
             double yLen = Math.tan(reflectionRadians) * xLen;
             
@@ -72,7 +70,7 @@ public class ConvergingLens extends Lens {
         gc.strokeLine(getXl() - disO, getYl() - ho, getXl(), exactY);
         
         // Draw ray after refraction
-        gc.strokeLine(getXl(), exactY, Lenses.CANVAS_WIDTH, exactY);
+        gc.strokeLine(getXl(), exactY, Main.CANVAS_WIDTH, exactY);
         
         // Draw reflected ray for virtual image
         if (f > disO) {
@@ -96,10 +94,10 @@ public class ConvergingLens extends Lens {
         // Calculate magnification
         double magnification = -disImg / disO;
         
-        gc.fillText("Distance from lens to image: " + disImg, 15, Lenses.CANVAS_HEIGHT + 15);
-        gc.fillText("Height of the image " + hImg, 15, Lenses.CANVAS_HEIGHT + 30);
-        gc.fillText("Magnification: " + magnification, 15, Lenses.CANVAS_HEIGHT + 45);
-        gc.fillText("Image classification: " + classifyImage(magnification), 15, Lenses.CANVAS_HEIGHT + 60);
+        gc.fillText("Distance from lens to image: " + disImg, 15, Main.CANVAS_HEIGHT + 15);
+        gc.fillText("Height of the image " + hImg, 15, Main.CANVAS_HEIGHT + 30);
+        gc.fillText("Magnification: " + magnification, 15, Main.CANVAS_HEIGHT + 45);
+        gc.fillText("Image classification: " + classifyImage(magnification), 15, Main.CANVAS_HEIGHT + 60);
     }
     
     /**

@@ -1,5 +1,3 @@
-package lenses;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -22,10 +20,10 @@ public abstract class Lens {
     public final void drawLens(GraphicsContext gc) {
         gc.setStroke(Color.BLUE);
 
-        for (int x=0; x<=Lenses.CANVAS_WIDTH; x+=50) {
+        for (int x=0; x<=Main.CANVAS_WIDTH; x+=50) {
             gc.strokeLine(x, getYl(), x+25, getYl());
         }
-        for (int y=0; y<=Lenses.CANVAS_HEIGHT; y+=50) {
+        for (int y=0; y<=Main.CANVAS_HEIGHT; y+=50) {
             gc.strokeLine(getXl(), y, getXl(), y+25);
         }
     }
@@ -55,7 +53,7 @@ public abstract class Lens {
         double rayAngle = Math.atan(disO / ho);
         
         // Create triangle to find x and y sizes
-        double relativeX = Lenses.CANVAS_WIDTH; // A large x value to draw the line to
+        double relativeX = Main.CANVAS_WIDTH; // A large x value to draw the line to
         double relativeY = relativeX / Math.tan(rayAngle);
         
         // Move x and y posistions to start at the object
@@ -69,7 +67,7 @@ public abstract class Lens {
             gc.setStroke(Color.RED);
             
             // Create imaginary triangle to find x and y values
-            double xRelative = Lenses.CANVAS_WIDTH; // large number to ensure ray is long enough
+            double xRelative = Main.CANVAS_WIDTH; // large number to ensure ray is long enough
             // Find the complementary angle (the angle that the triangle will use) by doing 90 - the ray angle
             double reflectedAngle = Math.toRadians(90 - Math.toDegrees(rayAngle));
             double yRelative = Math.tan(reflectedAngle) * xRelative;
@@ -92,13 +90,13 @@ public abstract class Lens {
      * @return The center x position of the lense
      */
     protected final double getXl() {
-        return Lenses.CANVAS_WIDTH / 2;
+        return Main.CANVAS_WIDTH / 2;
     }
     
     /**
      * @return The center y position of the lense
      */
     protected final double getYl() {
-        return Lenses.CANVAS_HEIGHT / 2;
+        return Main.CANVAS_HEIGHT / 2;
     }
 }

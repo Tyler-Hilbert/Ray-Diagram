@@ -1,5 +1,3 @@
-package lenses;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -18,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
-public class Lenses extends Application {
+public class Main extends Application {
     final static int CANVAS_HEIGHT = 800;
     final static int CANVAS_WIDTH = 800;
     
@@ -111,10 +109,10 @@ public class Lenses extends Application {
         Lens lens = null;
         if (convergingLens) {
             lens = new ConvergingLens(ho, disO, f);
-            gc.fillText("Converging Lens", Lenses.CANVAS_WIDTH - 150, 15);
+            gc.fillText("Converging Lens", Main.CANVAS_WIDTH - 150, 15);
         } else {
             lens = new DivergingLens(ho, disO, f);
-            gc.fillText("Diverging Lens", Lenses.CANVAS_WIDTH - 150, 15);
+            gc.fillText("Diverging Lens", Main.CANVAS_WIDTH - 150, 15);
         }
         lens.drawLens(gc);
         lens.drawLight(gc);
